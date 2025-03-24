@@ -1,13 +1,12 @@
 package in.littlemart.service;
 
+import in.littlemart.exceptions.LittleMartException;
 import in.littlemart.entities.Product;
 import in.littlemart.repository.ProductRepository;
-import org.hibernate.procedure.ProcedureOutputs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -21,7 +20,7 @@ public class ProductService {
 
     public Product getProductById(int productId)
     {
-        return productRepository.findById(productId).orElseThrow(()-> new RuntimeException("Product not found"));
+        return productRepository.findById(productId).orElseThrow(()-> new LittleMartException("Product with id : "+productId+" not found"));
     }
 
 
